@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
+## [v0.0.3] - Added API Access Token Validation Middleware
+- Implemented `CheckApiAccessToken` middleware to validate access tokens.
+- Utilized `TelegramApiResource` for consistent JSON response formatting.
+- Fixed issues with JSON response field order.
+___
 
 ## [v0.0.2] - Set Up Laravel Framework
 
