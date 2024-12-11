@@ -7,7 +7,8 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "laravel/framework": "^11.31"
+        "laravel/framework": "^11.31",
+        "mohsen-najafizadeh/telegram-notifier": "^1.0"
     },
     "require-dev": {
         "laravel/pail": "^1.1",
