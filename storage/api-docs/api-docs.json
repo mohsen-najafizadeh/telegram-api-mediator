@@ -1,0 +1,174 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Telegram API Mediator",
+        "description": "API documentation for Telegram API Mediator service.",
+        "contact": {
+            "email": "your-email@example.com"
+        },
+        "version": "0.0.4"
+    },
+    "servers": [
+        {
+            "url": "http://localhost/api",
+            "description": "Local server"
+        }
+    ],
+    "paths": {
+        "/telegram": {
+            "post": {
+                "tags": [
+                    "Telegram"
+                ],
+                "summary": "Send a message through Telegram",
+                "description": "Sends a message to a specific chat using Telegram Bot API.",
+                "operationId": "c8f406e9f5197e26aebca1f5a0850264",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "message",
+                                    "botToken",
+                                    "chatId"
+                                ],
+                                "properties": {
+                                    "message": {
+                                        "description": "Message to be sent.",
+                                        "type": "string",
+                                        "example": "Hello, world!"
+                                    },
+                                    "botToken": {
+                                        "description": "Bot token from Telegram.",
+                                        "type": "string",
+                                        "example": "123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11"
+                                    },
+                                    "chatId": {
+                                        "description": "Unique identifier for the target chat.",
+                                        "type": "string",
+                                        "example": "12345678"
+                                    },
+                                    "parseMode": {
+                                        "description": "Text formatting mode (e.g., Markdown, HTML).",
+                                        "type": "string",
+                                        "example": "Markdown"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Message sent successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "header-code": {
+                                            "description": "HTTP status code.",
+                                            "type": "integer",
+                                            "example": 200
+                                        },
+                                        "status": {
+                                            "description": "Request status.",
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "message": {
+                                            "description": "Detailed response message.",
+                                            "type": "string",
+                                            "example": "Message sent successfully."
+                                        },
+                                        "data": {
+                                            "description": "Response data from Telegram.",
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "header-code": {
+                                            "type": "integer",
+                                            "example": 400
+                                        },
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Invalid input provided."
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "header-code": {
+                                            "type": "integer",
+                                            "example": 401
+                                        },
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthorized: Invalid access token."
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "description": "Enter your Bearer token here",
+                "bearerFormat": "sha256",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Telegram",
+            "description": "Telegram"
+        }
+    ]
+}
