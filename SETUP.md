@@ -1,12 +1,5 @@
 # Telegram API Mediator
-
-This project provides a simple Laravel-based API that acts as a mediator for Telegram-related functionalities. It is containerized using Docker, supporting both local and production environments.
-
-## Features
-- Local and production-ready Docker environments.
-- Automated SSL certificate generation for production using Certbot.
-- Nginx as the web server.
-- Minimal configuration for local development.
+# Quick Start Guide: Run the Project with Docker Anywhere
 
 ---
 
