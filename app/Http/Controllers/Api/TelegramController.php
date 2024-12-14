@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TelegramApiRequest;
 use App\Http\Resources\TelegramApiResource;
+use Illuminate\Http\JsonResponse;
 use MohsenNajafizadeh\TelegramNotifier\Exceptions\TelegramException;
 use MohsenNajafizadeh\TelegramNotifier\Telegram;
 
@@ -64,15 +65,15 @@ class TelegramController extends Controller
      * )
      *
      * @param TelegramApiRequest $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      * @throws TelegramException
      */
-    public function sendMessage(TelegramApiRequest $request)
+    public function sendMessage(TelegramApiRequest $request): JsonResponse
     {
         $params = $request->only(['message', 'botToken', 'chatId', 'parseMode']);
         $response = Telegram::sendMessage(...$params);
         return response()->json(
-            new TelegramApiResource($response), 200
+            new TelegramApiResource($response)
         );
     }
 }

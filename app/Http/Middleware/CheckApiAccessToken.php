@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Http\Resources\TelegramApiResource;
 use Closure;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -14,9 +15,9 @@ class CheckApiAccessToken
      *
      * @param Request $request
      * @param Closure(Request): (Response) $next
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function handle(Request $request, Closure $next): \Illuminate\Http\JsonResponse
+    public function handle(Request $request, Closure $next): JsonResponse
     {
         $validTokens = explode(',', env('API_ACCESS_TOKENS', ''));
 
