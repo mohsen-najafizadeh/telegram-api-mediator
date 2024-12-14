@@ -22,7 +22,7 @@ Here’s an example of how your POST request should look:
 
 ```http
 POST /api/telegram HTTP/1.1
-Host: shilaei.com
+Host: YOUR_DOMAIN.COM
 Authorization: Bearer YOUR_API_TOKEN
 Accept: application/json
 Content-Type: application/json
@@ -81,27 +81,56 @@ Content-Type: application/json
 // Output:
 /*
 json
-(
-    .
-    .
-    .
-)
+{
+  "header-code": 200,
+  "status": "success",
+  "message": "Message sent successfully.",
+  "data": {}
+}
 */
 ```
 
 #### Error Example
 
-If the message fails to send:
+If the message fails to send for unauthorized Requests:
 
 ```php
+{
+    "message": "This message is being sent for testing Authorisation.",
+    "botToken": "YOUR_BOT_TOKEN",
+    "chatId": "YOUR_CHAT_ID",
+    "parseMode": "HTML"
+}
 // Output:
 /*
 json
-(
-    .
-    .
-    .
-)
+{
+  "header-code": 400,
+  "status": "error",
+  "message": "Invalid input provided.",
+  "data": {}
+}
+*/
+```
+
+If the message fails to send for invalid `botToken` or `chatId`:
+
+```php
+{
+    "message": "This message is being sent for testing the Errors.",
+    "botToken": "INVALID_BOT_TOKEN",
+    "chatId": "INVALID_CHAT_ID",
+    "parseMode": "HTML"
+}
+// Output:
+/*
+json
+{
+  "header-code": 400,
+  "status": "error",
+  "message": "Invalid input provided.",
+  "data": {}
+}
 */
 ```
 
@@ -116,36 +145,7 @@ json
 
 ---
 
-## 2. Error Requests
-
-```php
-POST /api/telegram HTTP/1.1
-Host: shilaei.com
-Authorization: Bearer YOUR_API_TOKEN
-Accept: application/json
-Content-Type: application/json
-
-{
-    "message": "This message is being sent for testing the service.",
-    "botToken": "YOUR_BOT_TOKEN",
-    "chatId": "YOUR_CHAT_ID",
-    "parseMode": "HTML"
-}
-
-// Output:
-/*
-json
-(
-    .
-    .
-    .
-)
-*/
-```
-
----
-
-## 3. Tests
+## 2. Tests
 
 This package includes PHPUnit tests. Run the tests using:
 
@@ -155,19 +155,19 @@ This package includes PHPUnit tests. Run the tests using:
 
 ---
 
-## 4. Changelog
+## 3. Changelog
 
 For details about version changes, see the [`CHANGELOG.md`](CHANGELOG.md) file.
 
 ---
 
-## 5. Contributing
+## 4. Contributing
 
 We welcome contributions! Please read the [`CONTRIBUTING.md`](CONTRIBUTING.md) file before submitting changes.
 
 ---
 
-## 6. FAQ
+## 5. FAQ
 
 ### 1. Does this package support sending photos or files?
 
@@ -179,6 +179,6 @@ Please report issues in the GitHub Issues section.
 
 ---
 
-## 7. References
+## 6. References
 
 - [Telegram Bot API Documentation](https://core.telegram.org/bots/api)
