@@ -9,8 +9,14 @@ use Illuminate\Http\JsonResponse;
 use MohsenNajafizadeh\TelegramNotifier\Exceptions\TelegramException;
 use MohsenNajafizadeh\TelegramNotifier\Telegram;
 
+/**
+ * @property $telegram
+ */
 class TelegramController extends Controller
 {
+    public function __construct(private readonly ?Telegram $telegram = null)
+    {
+    }
     /**
      * Send a message via Telegram API.
      *
@@ -35,18 +41,8 @@ class TelegramController extends Controller
      *         @OA\JsonContent(
      *             @OA\Property(property="header-code", type="integer", example=200, description="HTTP status code."),
      *             @OA\Property(property="status", type="string", example="success", description="Request status."),
-     *             @OA\Property(property="message", type="string", example="Message sent successfully.", description="Detailed response message."),
+     *             @OA\Property(property="message", type="string", example="Message sent!", description="Detailed response message."),
      *             @OA\Property(property="data", type="object", description="Response data from Telegram.")
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=400,
-     *         description="Bad request.",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="header-code", type="integer", example=400),
-     *             @OA\Property(property="status", type="string", example="error"),
-     *             @OA\Property(property="message", type="string", example="Invalid input provided."),
-     *             @OA\Property(property="data", type="object")
      *         )
      *     ),
      *     @OA\Response(
@@ -56,7 +52,17 @@ class TelegramController extends Controller
      *             @OA\Property(property="header-code", type="integer", example=401),
      *             @OA\Property(property="status", type="string", example="error"),
      *             @OA\Property(property="message", type="string", example="Unauthorized: Invalid access token."),
-     *             @OA\Property(property="data", type="object")
+     *             @OA\Property(property="data", type="object", description="Additional information about the error.")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Unprocessable Entity. Missing or invalid parameters.",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="header-code", type="integer", example=422),
+     *             @OA\Property(property="status", type="string", example="error"),
+     *             @OA\Property(property="message", type="string", example="Missing or invalid parameters."),
+     *             @OA\Property(property="data", type="object", description="Additional information about the error.")
      *         )
      *     ),
      *     security={
@@ -71,7 +77,7 @@ class TelegramController extends Controller
     public function sendMessage(TelegramApiRequest $request): JsonResponse
     {
         $params = $request->only(['message', 'botToken', 'chatId', 'parseMode']);
-        $response = Telegram::sendMessage(...$params);
+        $response = $this->telegram ? $this->telegram::sendMessage(...$params) : Telegram::sendMessage(...$params);
         return response()->json(
             new TelegramApiResource($response)
         );

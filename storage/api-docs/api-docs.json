@@ -80,37 +80,10 @@
                                         "message": {
                                             "description": "Detailed response message.",
                                             "type": "string",
-                                            "example": "Message sent successfully."
+                                            "example": "Message sent!"
                                         },
                                         "data": {
                                             "description": "Response data from Telegram.",
-                                            "type": "object"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "header-code": {
-                                            "type": "integer",
-                                            "example": 400
-                                        },
-                                        "status": {
-                                            "type": "string",
-                                            "example": "error"
-                                        },
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Invalid input provided."
-                                        },
-                                        "data": {
                                             "type": "object"
                                         }
                                     },
@@ -138,6 +111,35 @@
                                             "example": "Unauthorized: Invalid access token."
                                         },
                                         "data": {
+                                            "description": "Additional information about the error.",
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity. Missing or invalid parameters.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "header-code": {
+                                            "type": "integer",
+                                            "example": 422
+                                        },
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Missing or invalid parameters."
+                                        },
+                                        "data": {
+                                            "description": "Additional information about the error.",
                                             "type": "object"
                                         }
                                     },

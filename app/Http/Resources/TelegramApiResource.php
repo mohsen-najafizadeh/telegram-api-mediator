@@ -21,7 +21,7 @@ class TelegramApiResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'header-code' => $this->resource['headerCode'] ?? null,
+            'header_code' => $this->resource['headerCode'] ?? null,
             'status' => $this->resource['status'] ?? null,
             'message' => $this->resource['message'] ?? null,
             'data' => $this->resource['data'] ?? [],
