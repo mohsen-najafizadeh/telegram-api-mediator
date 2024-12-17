@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
+## [v0.0.4] - Added API Test Coverage for Telegram
+- Developed comprehensive test cases for Telegram API interactions.
+- Covered scenarios including valid and invalid access tokens, missing parameters, and successful message dispatch.
+- Ensured alignment with `TelegramApiResource` response structure.
+
+---
 ## [v0.0.3] - Added API Access Token Validation Middleware
 - Implemented `CheckApiAccessToken` middleware to validate access tokens.
 - Utilized `TelegramApiResource` for consistent JSON response formatting.
