@@ -27,10 +27,10 @@ class CheckApiAccessToken
 
             return response()->json(
                 new TelegramApiResource([
+                    'headerCode' => 401,
+                    'status' => 'error',
                     'message' => 'Unauthorized: Invalid access token',
-                    'errors' => [
-                        'access_token' => 'Invalid access token',
-                    ],
+                    'data' => [],
                 ]),
                 401
             );
