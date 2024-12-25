@@ -31,8 +31,8 @@ cd telegram-api-mediator
 - Open the `.env` file and update the required environment variables. Example variables:
   ```env
   APP_ENV=local
-  CERTBOT_EMAIL=your-email@example.com
-  CERTBOT_DOMAINS=your-domain.com
+  APP_DEBUG=false
+  APP_URL=http://localhost
   ```
 
 ### 3. Local Environment Setup
@@ -49,8 +49,10 @@ docker-compose --profile local up --build
 1. Update `.env` with production-specific variables:
    ```env
    APP_ENV=production
-   CERTBOT_EMAIL=your-email@example.com
-   CERTBOT_DOMAINS=your-production-domain.com
+   APP_DEBUG=false
+   APP_URL=https://production-domain.com
+   EMAIL_FOR_SSL=your-email@example.com
+   DOMAINS_FOR_SSL=your-production-domain.com
    ```
 
 2. Start the production environment:
