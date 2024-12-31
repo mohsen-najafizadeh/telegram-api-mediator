@@ -78,8 +78,11 @@ class TelegramController extends Controller
     {
         $params = $request->only(['message', 'botToken', 'chatId', 'parseMode']);
         $response = $this->telegram ? $this->telegram::sendMessage(...$params) : Telegram::sendMessage(...$params);
+        if ($response['headerCode'] >= 400 && $response['headerCode'] < 500) {
+            $headerCode = 422;
+        }
         return response()->json(
-            new TelegramApiResource($response)
+            new TelegramApiResource($response), $headerCode ?? $response['headerCode']
         );
     }
 }

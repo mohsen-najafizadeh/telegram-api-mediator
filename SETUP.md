@@ -39,7 +39,7 @@ cd telegram-api-mediator
 
 Run the following command to start the local environment:
 ```bash
-docker-compose --profile local up --build
+docker compose --profile local up --build
 ```
 
 - Access the application at: `http://localhost`
@@ -57,7 +57,7 @@ docker-compose --profile local up --build
 
 2. Start the production environment:
    ```bash
-   docker-compose --profile production up --build
+   docker compose --profile production up --build
    ```
 
 3. Ensure Certbot generates SSL certificates successfully and that Nginx serves the application over HTTPS.
@@ -83,7 +83,7 @@ docker-compose --profile local up --build
     - Ensure ports 80 and 443 are open in your firewall settings.
 
 - If containers fail to start:
-    - Use `docker-compose logs <service-name>` to inspect logs for errors.
+    - Use `docker compose logs <service-name>` to inspect logs for errors.
 
 ---
 
